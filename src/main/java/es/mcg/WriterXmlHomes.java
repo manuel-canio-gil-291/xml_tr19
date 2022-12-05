@@ -19,6 +19,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class WriterXmlHomes {
+    private static Casa createNewHome()
+    {
+        return new Casa("Jaen", "adosado", 300, 2, 7, false);
+    }
     private static void writerXml(Document document, OutputStream outputStream)
     {
         try
@@ -93,7 +97,7 @@ public class WriterXmlHomes {
     }
     public static void main(String[] args) {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        
+        Casa casa = createNewHome();
         try 
         {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -102,17 +106,17 @@ public class WriterXmlHomes {
             Element homesElement = document.createElement("casas");
             Element homeElement = document.createElement("casa");
             Attr cityAttr = document.createAttribute("ciudad");
-            cityAttr.setValue("Jaen");
+            cityAttr.setValue(casa.getCiudad());
             Attr typeAttr = document.createAttribute("tipo");
-            typeAttr.setValue("adosado");
+            typeAttr.setValue(casa.getTipo());
             Attr metersAttr = document.createAttribute("metrosCuadrados");
-            metersAttr.setValue("300");
+            metersAttr.setValue(String.valueOf(casa.getMetrosCuadrados()));
             Attr floorsAttr = document.createAttribute("plantas");
-            floorsAttr.setValue("2");
+            floorsAttr.setValue(String.valueOf(casa.getPlantas()));
             Attr roomsAttr = document.createAttribute("habitaciones");
-            roomsAttr.setValue("7");
+            roomsAttr.setValue(String.valueOf(casa.getHabitaciones()));
             Attr commonAttr = document.createAttribute("zonasComunes");
-            commonAttr.setValue("false");
+            commonAttr.setValue(String.valueOf(casa.getZonasComunes()));
             homeElement.getAttributes().setNamedItem(cityAttr);
             homeElement.getAttributes().setNamedItem(typeAttr);
             homeElement.getAttributes().setNamedItem(metersAttr);
